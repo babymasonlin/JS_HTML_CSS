@@ -1,37 +1,70 @@
-## Welcome to GitHub Pages
-
-You can use the [editor on GitHub](https://github.com/babymasonlin/JS_HTML_CSS/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/babymasonlin/JS_HTML_CSS/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+<!DOCTYPE html>
+<html>
+ <head>
+ <title>To-Do List App</title>
+ <script>
+  function addItem() {
+   var newItem = document.createElement("div");
+   newItem.innerHTML = document.getElementById("box").value;
+   newItem.onclick = removeItem;
+   document.getElementById("list").appendChild(newItem);
+   saveList();
+  }
+  function removeItem() {
+   document.getElementById("list").removeChild(this);
+   saveList();
+  }
+  function saveList() {
+   localStorage.storedList = document.getElementById("list").innerHTML;
+  }
+  function loadList() {
+   document.getElementById("list").innerHTML = localStorage.storedList;
+   for(var i = 0; i < list.children.length; i++) {
+    list.children[i].onclick = removeItem;
+   }
+  }
+ </script>
+ <style>
+  .header {
+    height:113px; 
+    width: 602px; 
+    background-color:red; 
+    float: center; 
+    padding:10px; 
+    margin:20px;
+    text-align:centre; 
+    font-size:24px;
+  }
+  .app {
+    height:10000000000000000000000000000000000000000000000000000px;
+    width: 600px; 
+    background-color:rgb(3, 255, 255); 
+    float: center; 
+    padding:10px; 
+    margin:20px;
+  }
+  input[type="button"] {
+   background-color: red;
+  }
+ </style>
+</head>
+<body>
+ <div class="header">
+  <img src="https://cdn.kastatic.org/third_party/javascript-khansrc/live-editor/build/images/avatars/avatar-team.png" style="float: left;"> 
+  <p>Mason's to-do list app</p>
+ </div>
+ <div class="app">
+  <p style="font-size:18px; font-style:bold;">To-Do List App</p>
+  <input type="text" id="box" value=""/>
+  <br/>
+  <input type="button" value="Add item" onclick="addItem();"/>
+  <br/>
+   <div id="list"></div>
+ </div>
+ <script>
+  if(localStorage.storedList) {
+   loadList();
+  }
+ </script>
+</body>
+</html>
